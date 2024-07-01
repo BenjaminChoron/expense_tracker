@@ -50,6 +50,8 @@ class _ExpensesState extends State<Expenses> {
       _registeredExpenses.remove(expense);
     });
 
+    ScaffoldMessenger.of(context).clearSnackBars();
+
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: const Text('Expense removed'),
@@ -89,14 +91,16 @@ class _ExpensesState extends State<Expenses> {
           ),
         ],
       ),
-      body: Column(
-        children: [
-          const Text('Chart'),
-          const SizedBox(height: 20),
-          Expanded(
-            child: mainContent,
-          ),
-        ],
+      body: SafeArea(
+        child: Column(
+          children: [
+            const Text('Chart'),
+            const SizedBox(height: 20),
+            Expanded(
+              child: mainContent,
+            ),
+          ],
+        ),
       ),
     );
   }
