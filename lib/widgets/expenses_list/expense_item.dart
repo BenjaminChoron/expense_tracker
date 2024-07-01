@@ -28,8 +28,8 @@ class ExpenseItem extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(expense.category.toString()),
-                Text(expense.date.toString()),
+                Icon(categoryIcons[expense.category]),
+                Text(expense.formattedDate),
               ],
             ),
           ],
