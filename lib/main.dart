@@ -1,3 +1,4 @@
+import 'package:expense_tracker/expenses.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -14,12 +15,7 @@ class MainApp extends StatelessWidget {
         appBar: AppBar(
           title: const Text('Expenses'),
         ),
-        body: const Column(
-          children: [
-            Text('Chart'),
-            Text('Expenses list...'),
-          ],
-        ),
+        body: const Expenses(),
       ),
     );
   }
