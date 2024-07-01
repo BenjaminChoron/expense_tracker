@@ -40,7 +40,12 @@ class _ExpensesState extends State<Expenses> {
   void _addExpense(Expense expense) {
     setState(() {
       _registeredExpenses.add(expense);
+      _sortExpenses();
     });
+  }
+
+  void _sortExpenses() {
+    _registeredExpenses.sort((a, b) => b.date.compareTo(a.date));
   }
 
   void _removeExpense(Expense expense) {
@@ -61,6 +66,7 @@ class _ExpensesState extends State<Expenses> {
           onPressed: () {
             setState(() {
               _registeredExpenses.insert(expenseIndex, expense);
+              _sortExpenses();
             });
           },
         ),
