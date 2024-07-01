@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:expense_tracker/models/expense.dart';
-import 'package:flutter/widgets.dart';
 
 class ExpenseItem extends StatelessWidget {
   const ExpenseItem({super.key, required this.expense});
