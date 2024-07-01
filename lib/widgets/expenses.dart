@@ -28,13 +28,19 @@ class _ExpensesState extends State<Expenses> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const Text('Chart'),
-        Expanded(
-          child: ExpensesList(expenses: _registeredExpenses),
-        ),
-      ],
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Expenses'),
+      ),
+      body: Column(
+        children: [
+          const Text('Chart'),
+          const SizedBox(height: 20),
+          Expanded(
+            child: ExpensesList(expenses: _registeredExpenses),
+          ),
+        ],
+      ),
     );
   }
 }
