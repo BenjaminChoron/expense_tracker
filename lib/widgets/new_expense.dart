@@ -32,6 +32,76 @@ class _NewExpenseState extends State<NewExpense> {
     });
   }
 
+  void _selectCategory(value) {
+    if (value == null) return;
+    setState(() {
+      _selectedCategory = value;
+    });
+  }
+
+  void _submitExpenseData() {
+    final enteredTitle = _titleController.text.trim();
+    final enteredAmount = double.tryParse(_amountController.text);
+    final amountIsValid = enteredAmount != null && enteredAmount > 0;
+
+    if (enteredTitle.isEmpty) {
+      showDialog(
+        context: context,
+        builder: (ctx) => AlertDialog(
+          title: const Text('Invalid title'),
+          content: const Text('Please enter a valid title.'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(ctx);
+              },
+              child: const Text('Understood'),
+            ),
+          ],
+        ),
+      );
+      return;
+    }
+
+    if (!amountIsValid) {
+      showDialog(
+        context: context,
+        builder: (ctx) => AlertDialog(
+          title: const Text('Invalid amount'),
+          content: const Text('Please enter a valid amount.'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(ctx);
+              },
+              child: const Text('Understood'),
+            ),
+          ],
+        ),
+      );
+      return;
+    }
+
+    if (_selectedDate == null) {
+      showDialog(
+        context: context,
+        builder: (ctx) => AlertDialog(
+          title: const Text('Invalid date'),
+          content: const Text('Please select a valid date.'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(ctx);
+              },
+              child: const Text('Understood'),
+            ),
+          ],
+        ),
+      );
+      return;
+    }
+  }
+
   @override
   void dispose() {
     _titleController.dispose();
@@ -102,12 +172,7 @@ class _NewExpenseState extends State<NewExpense> {
                       ),
                     )
                     .toList(),
-                onChanged: (value) {
-                  if (value == null) return;
-                  setState(() {
-                    _selectedCategory = value;
-                  });
-                },
+                onChanged: (value) => _selectCategory(value),
               ),
               const Spacer(),
               TextButton(
@@ -117,7 +182,7 @@ class _NewExpenseState extends State<NewExpense> {
                 child: const Text('Cancel'),
               ),
               ElevatedButton(
-                onPressed: () {},
+                onPressed: _submitExpenseData,
                 child: const Text('Add Expense'),
               ),
             ],
