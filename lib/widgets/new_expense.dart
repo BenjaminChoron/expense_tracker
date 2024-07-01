@@ -129,13 +129,18 @@ class _NewExpenseState extends State<NewExpense> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
-          const Text(
+          Text(
             'New expense',
-            style: TextStyle(fontSize: 24),
+            style: TextStyle(
+              fontSize: 24,
+              color: Theme.of(context).colorScheme.primary,
+              fontWeight: FontWeight.bold,
+            ),
           ),
+          const SizedBox(height: 20),
           TextField(
             controller: _titleController,
-            maxLength: 50,
+            maxLength: 25,
             decoration: const InputDecoration(labelText: 'Title'),
           ),
           Row(
@@ -173,23 +178,32 @@ class _NewExpenseState extends State<NewExpense> {
           const SizedBox(height: 20),
           Row(
             children: [
-              DropdownButton(
-                value: _selectedCategory,
-                items: Category.values
-                    .map(
-                      (category) => DropdownMenuItem(
-                        value: category,
-                        child: Row(
-                          children: [
-                            Icon(categoryIcons[category]),
-                            const SizedBox(width: 8),
-                            Text(category.name.toUpperCase()),
-                          ],
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                decoration: BoxDecoration(
+                  border: Border.all(
+                      color: Theme.of(context).colorScheme.secondary),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                child: DropdownButton(
+                  value: _selectedCategory,
+                  items: Category.values
+                      .map(
+                        (category) => DropdownMenuItem(
+                          value: category,
+                          child: Row(
+                            children: [
+                              Icon(categoryIcons[category]),
+                              const SizedBox(width: 8),
+                              Text(category.name.toUpperCase()),
+                            ],
+                          ),
                         ),
-                      ),
-                    )
-                    .toList(),
-                onChanged: (value) => _selectCategory(value),
+                      )
+                      .toList(),
+                  onChanged: (value) => _selectCategory(value),
+                  underline: const SizedBox(),
+                ),
               ),
               const Spacer(),
               TextButton(

@@ -20,8 +20,18 @@ class ExpenseItem extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(expense.title),
-                Text('${expense.amount.toStringAsFixed(2)} €'),
+                Text(
+                  expense.title,
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
+                ),
+                Text(
+                  '${expense.amount.toStringAsFixed(2)} €',
+                  style: const TextStyle(fontWeight: FontWeight.bold),
+                ),
               ],
             ),
             Row(
