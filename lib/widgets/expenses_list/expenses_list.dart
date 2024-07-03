@@ -23,12 +23,12 @@ class ExpensesList extends StatelessWidget {
         },
         background: Container(
           padding: const EdgeInsets.only(right: 20.0),
-          child: const Row(
+          child: Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: <Widget>[
               Icon(
                 Icons.delete,
-                color: Colors.red,
+                color: Theme.of(context).colorScheme.error,
               )
             ],
           ),

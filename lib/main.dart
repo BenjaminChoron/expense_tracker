@@ -21,9 +21,6 @@ class MainApp extends StatelessWidget {
         appBarTheme: const AppBarTheme().copyWith(
           backgroundColor: kColorScheme.primary,
           foregroundColor: kColorScheme.onPrimary,
-          titleTextStyle: const TextStyle(
-            fontSize: 24,
-          ),
         ),
         scaffoldBackgroundColor: kColorScheme.secondaryContainer,
         cardTheme: const CardTheme().copyWith(
@@ -40,6 +37,12 @@ class MainApp extends StatelessWidget {
             foregroundColor: kColorScheme.onPrimary,
           ),
         ),
+        textTheme: ThemeData().textTheme.copyWith(
+              titleLarge: const TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
       ),
       home: const Expenses(),
     );
