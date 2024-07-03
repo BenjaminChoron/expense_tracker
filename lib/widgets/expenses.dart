@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:expense_tracker/models/expense.dart';
 import 'package:expense_tracker/widgets/expenses_list/expenses_list.dart';
 import 'package:expense_tracker/widgets/new_expense.dart';
+import 'package:expense_tracker/widgets/chart/chart.dart';
 
 class Expenses extends StatefulWidget {
   const Expenses({super.key});
@@ -100,7 +101,7 @@ class _ExpensesState extends State<Expenses> {
       body: SafeArea(
         child: Column(
           children: [
-            const Text('Chart'),
+            Chart(expenses: _registeredExpenses),
             const SizedBox(height: 20),
             Expanded(
               child: mainContent,
