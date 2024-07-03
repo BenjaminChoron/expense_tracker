@@ -6,6 +6,11 @@ ColorScheme kColorScheme = ColorScheme.fromSeed(
   seedColor: Colors.green,
 );
 
+ColorScheme kDarkColorScheme = ColorScheme.fromSeed(
+  brightness: Brightness.dark,
+  seedColor: const Color.fromARGB(255, 32, 83, 34),
+);
+
 void main() {
   runApp(const MainApp());
 }
@@ -16,6 +21,15 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      darkTheme: ThemeData.dark().copyWith(
+        colorScheme: kDarkColorScheme,
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            backgroundColor: kDarkColorScheme.primary,
+            foregroundColor: kDarkColorScheme.onPrimary,
+          ),
+        ),
+      ),
       theme: ThemeData().copyWith(
         colorScheme: kColorScheme,
         appBarTheme: const AppBarTheme().copyWith(
@@ -44,6 +58,7 @@ class MainApp extends StatelessWidget {
               ),
             ),
       ),
+      themeMode: ThemeMode.system,
       home: const Expenses(),
     );
   }
