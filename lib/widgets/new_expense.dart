@@ -2,6 +2,7 @@ import 'package:expense_tracker/models/expense.dart';
 import 'package:expense_tracker/widgets/new_expense/category_dropdown.dart';
 import 'package:expense_tracker/widgets/new_expense/date_picker.dart';
 import 'package:expense_tracker/widgets/new_expense/new_expense_actions.dart';
+import 'package:expense_tracker/widgets/new_expense/new_expense_amount.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -162,14 +163,7 @@ class _NewExpenseState extends State<NewExpense> {
                       ),
                       const SizedBox(width: 16),
                       Expanded(
-                        child: TextField(
-                          controller: _amountController,
-                          keyboardType: TextInputType.number,
-                          decoration: const InputDecoration(
-                            labelText: 'Amount',
-                            suffixText: '€',
-                          ),
-                        ),
+                        child: NewExpenseAmount(_amountController),
                       ),
                     ],
                   )
@@ -198,14 +192,7 @@ class _NewExpenseState extends State<NewExpense> {
                   Row(
                     children: [
                       Expanded(
-                        child: TextField(
-                          controller: _amountController,
-                          keyboardType: TextInputType.number,
-                          decoration: const InputDecoration(
-                            labelText: 'Amount',
-                            suffixText: '€',
-                          ),
-                        ),
+                        child: NewExpenseAmount(_amountController),
                       ),
                       const SizedBox(width: 16),
                       Expanded(
