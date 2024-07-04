@@ -1,8 +1,9 @@
 import 'package:expense_tracker/models/expense.dart';
-import 'package:expense_tracker/widgets/new_expense/category_dropdown.dart';
-import 'package:expense_tracker/widgets/new_expense/date_picker.dart';
+import 'package:expense_tracker/widgets/new_expense/new_expense_category_dropdown.dart';
+import 'package:expense_tracker/widgets/new_expense/new_expense_date_picker.dart';
 import 'package:expense_tracker/widgets/new_expense/new_expense_actions.dart';
 import 'package:expense_tracker/widgets/new_expense/new_expense_amount.dart';
+import 'package:expense_tracker/widgets/new_expense/new_expense_title.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -155,11 +156,7 @@ class _NewExpenseState extends State<NewExpense> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Expanded(
-                        child: TextField(
-                          controller: _titleController,
-                          maxLength: 25,
-                          decoration: const InputDecoration(labelText: 'Title'),
-                        ),
+                        child: NewExpenseTitle(_titleController),
                       ),
                       const SizedBox(width: 16),
                       Expanded(
@@ -168,20 +165,16 @@ class _NewExpenseState extends State<NewExpense> {
                     ],
                   )
                 else
-                  TextField(
-                    controller: _titleController,
-                    maxLength: 25,
-                    decoration: const InputDecoration(labelText: 'Title'),
-                  ),
+                  NewExpenseTitle(_titleController),
                 if (width >= 600)
                   Row(
                     children: [
                       Expanded(
-                        child: CategoryDropdown(_selectCategory),
+                        child: NewExpenseCategoryDropdown(_selectCategory),
                       ),
                       const SizedBox(width: 16),
                       Expanded(
-                        child: DatePicker(
+                        child: NewExpenseDatePicker(
                           selectedDate: _selectedDate,
                           presentDatePicker: _presentDatePicker,
                         ),
@@ -196,7 +189,7 @@ class _NewExpenseState extends State<NewExpense> {
                       ),
                       const SizedBox(width: 16),
                       Expanded(
-                        child: DatePicker(
+                        child: NewExpenseDatePicker(
                           selectedDate: _selectedDate,
                           presentDatePicker: _presentDatePicker,
                         ),
@@ -209,7 +202,7 @@ class _NewExpenseState extends State<NewExpense> {
                 else
                   Row(
                     children: [
-                      CategoryDropdown(_selectCategory),
+                      NewExpenseCategoryDropdown(_selectCategory),
                       const Spacer(),
                       NewExpenseActions(_submitExpenseData),
                     ],

@@ -1,8 +1,8 @@
 import 'package:expense_tracker/models/expense.dart';
 import 'package:flutter/material.dart';
 
-class CategoryDropdown extends StatelessWidget {
-  const CategoryDropdown(this._selectCategory, {super.key});
+class NewExpenseCategoryDropdown extends StatelessWidget {
+  const NewExpenseCategoryDropdown(this._selectCategory, {super.key});
 
   final void Function(Category) _selectCategory;
   final Category _selectedCategory = Category.leisure;

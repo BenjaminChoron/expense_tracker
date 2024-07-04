@@ -1,8 +1,8 @@
 import 'package:expense_tracker/widgets/new_expense.dart';
 import 'package:flutter/material.dart';
 
-class DatePicker extends StatelessWidget {
-  const DatePicker(
+class NewExpenseDatePicker extends StatelessWidget {
+  const NewExpenseDatePicker(
       {super.key, this.selectedDate, required this.presentDatePicker});
 
   final DateTime? selectedDate;
