@@ -1,5 +1,6 @@
 import 'package:expense_tracker/models/expense.dart';
 import 'package:expense_tracker/widgets/new_expense/category_dropdown.dart';
+import 'package:expense_tracker/widgets/new_expense/date_picker.dart';
 import 'package:expense_tracker/widgets/new_expense/new_expense_actions.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -186,20 +187,9 @@ class _NewExpenseState extends State<NewExpense> {
                       ),
                       const SizedBox(width: 16),
                       Expanded(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Text(
-                              _selectedDate == null
-                                  ? 'No date selected'
-                                  : formatter.format(_selectedDate!),
-                            ),
-                            IconButton(
-                              onPressed: _presentDatePicker,
-                              icon: const Icon(Icons.calendar_month),
-                            )
-                          ],
+                        child: DatePicker(
+                          selectedDate: _selectedDate,
+                          presentDatePicker: _presentDatePicker,
                         ),
                       ),
                     ],
@@ -219,20 +209,9 @@ class _NewExpenseState extends State<NewExpense> {
                       ),
                       const SizedBox(width: 16),
                       Expanded(
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Text(
-                              _selectedDate == null
-                                  ? 'No date selected'
-                                  : formatter.format(_selectedDate!),
-                            ),
-                            IconButton(
-                              onPressed: _presentDatePicker,
-                              icon: const Icon(Icons.calendar_month),
-                            )
-                          ],
+                        child: DatePicker(
+                          selectedDate: _selectedDate,
+                          presentDatePicker: _presentDatePicker,
                         ),
                       ),
                     ],
