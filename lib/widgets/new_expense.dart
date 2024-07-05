@@ -1,9 +1,12 @@
+import 'dart:io';
+
 import 'package:expense_tracker/models/expense.dart';
 import 'package:expense_tracker/widgets/new_expense/new_expense_category_dropdown.dart';
 import 'package:expense_tracker/widgets/new_expense/new_expense_date_picker.dart';
 import 'package:expense_tracker/widgets/new_expense/new_expense_actions.dart';
 import 'package:expense_tracker/widgets/new_expense/new_expense_amount.dart';
 import 'package:expense_tracker/widgets/new_expense/new_expense_title.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -46,65 +49,59 @@ class _NewExpenseState extends State<NewExpense> {
     });
   }
 
+  void _showDialog(String dataType) {
+    if (Platform.isIOS) {
+      showCupertinoDialog(
+        context: context,
+        builder: (ctx) => CupertinoAlertDialog(
+          title: Text('Invalid $dataType'),
+          content: Text('Please enter a valid $dataType.'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(ctx);
+              },
+              child: const Text('Understood'),
+            ),
+          ],
+        ),
+      );
+    } else {
+      showDialog(
+        context: context,
+        builder: (ctx) => AlertDialog(
+          title: Text('Invalid $dataType'),
+          content: Text('Please enter a valid $dataType.'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(ctx);
+              },
+              child: const Text('Understood'),
+            ),
+          ],
+        ),
+      );
+    }
+  }
+
   void _submitExpenseData() {
     final enteredTitle = _titleController.text.trim();
     final enteredAmount = double.tryParse(_amountController.text);
     final amountIsValid = enteredAmount != null && enteredAmount > 0;
 
     if (enteredTitle.isEmpty) {
-      showDialog(
-        context: context,
-        builder: (ctx) => AlertDialog(
-          title: const Text('Invalid title'),
-          content: const Text('Please enter a valid title.'),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.pop(ctx);
-              },
-              child: const Text('Understood'),
-            ),
-          ],
-        ),
-      );
+      _showDialog('title');
       return;
     }
 
     if (!amountIsValid) {
-      showDialog(
-        context: context,
-        builder: (ctx) => AlertDialog(
-          title: const Text('Invalid amount'),
-          content: const Text('Please enter a valid amount.'),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.pop(ctx);
-              },
-              child: const Text('Understood'),
-            ),
-          ],
-        ),
-      );
+      _showDialog('amount');
       return;
     }
 
     if (_selectedDate == null) {
-      showDialog(
-        context: context,
-        builder: (ctx) => AlertDialog(
-          title: const Text('Invalid date'),
-          content: const Text('Please select a valid date.'),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.pop(ctx);
-              },
-              child: const Text('Understood'),
-            ),
-          ],
-        ),
-      );
+      _showDialog('date');
       return;
     }
 
